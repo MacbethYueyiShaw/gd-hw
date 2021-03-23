@@ -1,0 +1,14 @@
+*/[Ll]ibrary/
+*/[Ll]ogs/
+*/[Tt]emp/
+*/[Oo]bj/
+*/[Bb]uild/
+*/[Bb]uilds/
+*/[Pp]ackages/
+
+*/.vs/
+
+*/.consulo/
+*/*.csproj
+*/*.unityproj
+*/*.sln
