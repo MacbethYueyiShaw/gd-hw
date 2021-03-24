@@ -5,9 +5,9 @@
 */[Bb]uild/
 */[Bb]uilds/
 */[Pp]ackages/
+/exe
 
 */.vs/
-
 */.consulo/
 */*.csproj
 */*.unityproj
