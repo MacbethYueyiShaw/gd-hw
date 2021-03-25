@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         Debug.Log("Die");
+        GameManager.GameOver(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
