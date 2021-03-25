@@ -241,9 +241,9 @@ GameObject:
   - component: {fileID: 6132915195477392969}
   - component: {fileID: 6132915195477392968}
   - component: {fileID: 6132915195477392966}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RotateSpikePlatform
-  m_TagString: Untagged
+  m_TagString: PlatForm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
