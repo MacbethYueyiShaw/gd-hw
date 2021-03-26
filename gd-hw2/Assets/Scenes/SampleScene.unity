@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4612c4255f9e614db9a304102e798df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: -0.02}
+  speed: {x: 0, y: -0.002}
 --- !u!64 &257280720
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -723,6 +723,8 @@ MonoBehaviour:
   - {fileID: 7749136149363069185, guid: 0fff14f4ce0f98d47b89850062e8a06a, type: 3}
   - {fileID: 6132915195477392975, guid: 70b4dfe7959861b428ec8fd7ac1fd92b, type: 3}
   - {fileID: 7024776213735472414, guid: 226d61dd8828021408e2220b4b42d62e, type: 3}
+  - {fileID: 5950469040080488438, guid: 037c47c93bce2b84bb560aef3bc36fbe, type: 3}
+  - {fileID: 5950469040080488438, guid: 037c47c93bce2b84bb560aef3bc36fbe, type: 3}
   spawnTime: 2
 --- !u!4 &356099384
 Transform:
