@@ -31,5 +31,6 @@ public class Spawner : MonoBehaviour
 
         int index = Random.Range(0, platforms.Count);
         GameObject go = Instantiate(platforms[index], spawnPosition, Quaternion.identity);
+        go.transform.SetParent(this.gameObject.transform);
     }
 }
