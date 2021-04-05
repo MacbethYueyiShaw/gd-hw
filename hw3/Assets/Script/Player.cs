@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public PlayerMovement playerMovement;
+    public Animator animator;
 
-	public float maxHealth = 100f;
+    public float maxHealth = 100f;
 	public float currentHealth;
     public float maxMana = 100f;
     public float currentMana;
@@ -48,9 +50,9 @@ public class Player : MonoBehaviour
     void TakeDamage(float damage)
 	{
 		currentHealth -= damage;
-
 		healthBar.SetHealth(currentHealth);
-	}
+        animator.SetBool("TakeDMG", true);
+    }
     void UseSkill(float manaCost)
     {
         if (currentMana < manaCost)
@@ -61,5 +63,10 @@ public class Player : MonoBehaviour
         currentMana -= manaCost;
 
         manaBar.SetMana(currentMana);
+    }
+    void TakeDamageOver()
+    {
+        Debug.Log("TakeDamageOver!");
+        animator.SetBool("TakeDMG", false);
     }
 }
