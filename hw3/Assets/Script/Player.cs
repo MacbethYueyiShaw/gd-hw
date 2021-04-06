@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public Animator animator;
+    Rigidbody2D rb;
 
     public float maxHealth = 100f;
 	public float currentHealth;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
         currentMana = maxMana;
 		healthBar.SetMaxHealth(maxHealth);
         manaBar.SetMaxMana(maxMana);
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,7 +32,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(20f);
+            Vector2 force;
+            force.x = 0f;
+            force.y = 0f;
+            TakeDamage(20f, force);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -47,11 +52,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage,Vector2 force)
 	{
-		currentHealth -= damage;
+        Debug.Log(force);
+        currentHealth -= damage;
 		healthBar.SetHealth(currentHealth);
         animator.SetBool("TakeDMG", true);
+        rb.AddForce(force);
     }
     void UseSkill(float manaCost)
     {
@@ -66,7 +73,7 @@ public class Player : MonoBehaviour
     }
     void TakeDamageOver()
     {
-        Debug.Log("TakeDamageOver!");
+        //Debug.Log("TakeDamageOver!");
         animator.SetBool("TakeDMG", false);
     }
 }

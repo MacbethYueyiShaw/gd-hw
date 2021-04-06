@@ -6487,7 +6487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50dcfd36e9c5c494d9caca0deff79f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiPath: {fileID: 1187026802}
 --- !u!1 &1404474697
 GameObject:
   m_ObjectHideFlags: 0
@@ -7555,6 +7554,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAI-Opossum
       objectReference: {fileID: 0}
+    - target: {fileID: 1688580639021411885, guid: ed089184556eb984d95a365e253cbc15,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed089184556eb984d95a365e253cbc15, type: 3}
 --- !u!1001 &3107810676548204096
@@ -7633,6 +7637,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2979311, guid: 4b3e6c1e88cc34148bc02465f1520f8b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979311, guid: 4b3e6c1e88cc34148bc02465f1520f8b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3534597482164909808, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3534597482164909810, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
         type: 3}
       propertyPath: m_RootOrder
@@ -7695,13 +7712,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3534597482164909821, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3534597482164909823, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
         type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1697896964}
+    - target: {fileID: 3534597482164909823, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
+        type: 3}
+      propertyPath: impactEffect
+      value: 
+      objectReference: {fileID: 6445666186361868711, guid: 9deea548c44c9ac4e94d6932a0d85eaf,
+        type: 3}
+    - target: {fileID: 8359710877333739607, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359710877333739607, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359710877333739607, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b3e6c1e88cc34148bc02465f1520f8b, type: 3}
