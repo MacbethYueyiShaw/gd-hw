@@ -73,12 +73,10 @@ public class EnemyAI : MonoBehaviour
         if (player != null)
         {
             Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
-            Vector2 dashForce = direction * atk * 100f;
-            player.TakeDamage(atk, dashForce);
+            Vector2 dashForce = direction * atk * 200f;
+            if(player.TakeDamage(atk, dashForce))
+                Instantiate(impactEffect, hitInfo.transform.position, hitInfo.transform.rotation);
         }
-
-        Instantiate(impactEffect, hitInfo.transform.position, hitInfo.transform.rotation);
-
         //Destroy(gameObject);
     }
 
@@ -103,7 +101,7 @@ public class EnemyAI : MonoBehaviour
         }
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
-
+        //Debug.Log(force);
         rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);

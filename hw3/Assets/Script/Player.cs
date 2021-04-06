@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float maxMana = 100f;
     public float currentMana;
     public float manaRecovery = 1f;
+    public float invincibleTime = 0.5f;
+    bool isInvincible = false;
 
     public HealthBar healthBar;
     public ManaBar manaBar;
@@ -52,13 +54,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage,Vector2 force)
+    public bool TakeDamage(float damage,Vector2 force)
 	{
-        Debug.Log(force);
+        if (isInvincible) 
+            return false;
+        //Debug.Log(force);
         currentHealth -= damage;
 		healthBar.SetHealth(currentHealth);
         animator.SetBool("TakeDMG", true);
         rb.AddForce(force);
+        isInvincible = true;
+        Invoke("InvincibleOver", invincibleTime);
+        return true;
     }
     void UseSkill(float manaCost)
     {
@@ -75,5 +82,10 @@ public class Player : MonoBehaviour
     {
         //Debug.Log("TakeDamageOver!");
         animator.SetBool("TakeDMG", false);
+    }
+
+    void InvincibleOver()
+    {
+        isInvincible = false;
     }
 }

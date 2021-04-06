@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 8359710877333739607}
   m_Layer: 0
   m_Name: EnemyAI-Eagle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -532,7 +532,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.36, y: -0.33}
+  m_Offset: {x: 0, y: -0.33}
   serializedVersion: 2
   m_Radius: 0.35
 --- !u!114 &3534597482164909823
@@ -550,6 +550,8 @@ MonoBehaviour:
   target: {fileID: 0}
   GFX: {fileID: 3534597482655692968}
   animator: {fileID: 3534597482655692969}
+  impactEffect: {fileID: 1604227354005263177, guid: d6d04e4b024a73147a9b9f10d607f384,
+    type: 3}
   healthBar: {fileID: 1877948461}
   maxHealth: 100
   currentHealth: 0
@@ -569,7 +571,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
+  m_LinearDrag: 0.93
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: aafe98304f7e8234f9acd482cec5ca02, type: 2}
@@ -590,9 +592,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.36, y: -0.33}
+  m_Offset: {x: 0, y: -0.33}
   serializedVersion: 2
-  m_Radius: 0.71
+  m_Radius: 0.8
 --- !u!1 &3534597482655692951
 GameObject:
   m_ObjectHideFlags: 0
