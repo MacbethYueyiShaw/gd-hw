@@ -5,17 +5,16 @@ using Pathfinding;
 
 public class EnemyGFX : MonoBehaviour
 {
-    public AIPath aiPath;
+    Animator animator;
 
-    void Update()
+    private void Start()
     {
-        if(aiPath.desiredVelocity.x >= 0.01f)
-        {
-            transform.localScale = new Vector3(-1f,1f,1f);
-        }
-        else if (aiPath.desiredVelocity.x <= -0.01f)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
+        animator = GetComponent<Animator>();
+    }
+
+    void TakeDamageOver()
+    {
+        Debug.Log("EnemyTakeDamageOver!");
+        animator.SetBool("TakeDMG", false);
     }
 }

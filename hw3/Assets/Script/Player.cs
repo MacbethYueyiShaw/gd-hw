@@ -6,12 +6,15 @@ public class Player : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public Animator animator;
+    Rigidbody2D rb;
 
     public float maxHealth = 100f;
 	public float currentHealth;
     public float maxMana = 100f;
     public float currentMana;
     public float manaRecovery = 1f;
+    public float invincibleTime = 0.5f;
+    bool isInvincible = false;
 
     public HealthBar healthBar;
     public ManaBar manaBar;
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour
         currentMana = maxMana;
 		healthBar.SetMaxHealth(maxHealth);
         manaBar.SetMaxMana(maxMana);
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,7 +34,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(20f);
+            Vector2 force;
+            force.x = 0f;
+            force.y = 0f;
+            TakeDamage(20f, force);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -47,11 +54,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    void TakeDamage(float damage)
+    public bool TakeDamage(float damage,Vector2 force)
 	{
-		currentHealth -= damage;
+        if (isInvincible) 
+            return false;
+        //Debug.Log(force);
+        currentHealth -= damage;
 		healthBar.SetHealth(currentHealth);
         animator.SetBool("TakeDMG", true);
+        rb.AddForce(force);
+        isInvincible = true;
+        Invoke("InvincibleOver", invincibleTime);
+        return true;
     }
     void UseSkill(float manaCost)
     {
@@ -66,7 +80,12 @@ public class Player : MonoBehaviour
     }
     void TakeDamageOver()
     {
-        Debug.Log("TakeDamageOver!");
+        //Debug.Log("TakeDamageOver!");
         animator.SetBool("TakeDMG", false);
+    }
+
+    void InvincibleOver()
+    {
+        isInvincible = false;
     }
 }
