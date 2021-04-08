@@ -709,3 +709,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50dcfd36e9c5c494d9caca0deff79f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAI: {fileID: 3534597482164909823}

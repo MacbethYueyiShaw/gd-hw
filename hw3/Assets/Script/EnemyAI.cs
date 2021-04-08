@@ -51,10 +51,20 @@ public class EnemyAI : MonoBehaviour
         animator.SetBool("TakeDMG", true);
     }
 
-    void TakeDamageOver()
+    public void TakeDamageOver()
     {
         Debug.Log("TakeDamageOver!");
         animator.SetBool("TakeDMG", false);
+    }
+
+    void death()
+    {
+        animator.SetBool("Death", true);
+    }
+
+    public void DeathAnimationOver()
+    {
+        Destroy(gameObject);
     }
 
     void OnPathComplete(Path p)
@@ -90,6 +100,11 @@ public class EnemyAI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(20f);
+        }
+
+        if (currentHealth <= 0f)
+        {
+            death();
         }
 
         if (path == null)

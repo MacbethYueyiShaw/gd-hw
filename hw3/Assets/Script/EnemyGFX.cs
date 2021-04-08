@@ -6,15 +6,20 @@ using Pathfinding;
 public class EnemyGFX : MonoBehaviour
 {
     Animator animator;
+    public EnemyAI enemyAI;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    void TakeDamageOver()
+    void TakeDamageOverSlot()
     {
-        Debug.Log("EnemyTakeDamageOver!");
-        animator.SetBool("TakeDMG", false);
+        enemyAI.TakeDamageOver();
+    }
+
+    void DeathAnimationOverSlot()
+    {
+        enemyAI.DeathAnimationOver();
     }
 }
