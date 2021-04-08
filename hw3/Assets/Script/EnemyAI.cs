@@ -74,8 +74,12 @@ public class EnemyAI : MonoBehaviour
         {
             Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
             Vector2 dashForce = direction * atk * 200f;
+            Vector3 offset;
+            offset.x = 0f;
+            offset.y = 0.5f;
+            offset.z = 0f;
             if(player.TakeDamage(atk, dashForce))
-                Instantiate(impactEffect, hitInfo.transform.position, hitInfo.transform.rotation);
+                Instantiate(impactEffect, hitInfo.transform.position+offset, hitInfo.transform.rotation);
         }
         //Destroy(gameObject);
     }
