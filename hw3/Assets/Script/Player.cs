@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (currentHealth <= 0f)
         {
@@ -84,6 +84,12 @@ public class Player : MonoBehaviour
         Invoke("InvincibleOver", invincibleTime);
         return true;
     }
+
+    public void ResetPosition()
+    {
+        rb.position *= 0f;
+    }
+
     void UseSkill(float manaCost)
     {
         if (currentMana < manaCost)

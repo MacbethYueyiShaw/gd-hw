@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.05
+  m_Intensity: 0.76
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 1faeefe4000000009fc4aa6b
   m_LightCookieSprite: {fileID: 0}
@@ -8138,7 +8138,7 @@ MonoBehaviour:
   currentHealth: 0
   maxMana: 100
   currentMana: 0
-  manaRecovery: 1
+  manaRecovery: 10.93
   invincibleTime: 0.5
   healthBar: {fileID: 1522192107}
   manaBar: {fileID: 998562230}
@@ -8870,11 +8870,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1339052001, guid: ed089184556eb984d95a365e253cbc15, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1339052001, guid: ed089184556eb984d95a365e253cbc15, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1688580639021411862, guid: ed089184556eb984d95a365e253cbc15,
         type: 3}
@@ -8940,6 +8940,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyAI-Opossum
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688580639021411885, guid: ed089184556eb984d95a365e253cbc15,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed089184556eb984d95a365e253cbc15, type: 3}
@@ -9090,11 +9095,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2979311, guid: 4b3e6c1e88cc34148bc02465f1520f8b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2979311, guid: 4b3e6c1e88cc34148bc02465f1520f8b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3534597482164909810, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
         type: 3}
@@ -9159,7 +9164,7 @@ PrefabInstance:
     - target: {fileID: 3534597482164909821, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3534597482164909823, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
         type: 3}
