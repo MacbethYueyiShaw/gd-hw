@@ -550,7 +550,7 @@ MonoBehaviour:
   target: {fileID: 0}
   GFX: {fileID: 3534597482655692968}
   animator: {fileID: 3534597482655692969}
-  impactEffect: {fileID: 1604227354005263177, guid: d6d04e4b024a73147a9b9f10d607f384,
+  impactEffect: {fileID: 6445666186361868711, guid: 9deea548c44c9ac4e94d6932a0d85eaf,
     type: 3}
   healthBar: {fileID: 1877948461}
   maxHealth: 100
@@ -646,7 +646,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

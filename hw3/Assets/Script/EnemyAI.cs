@@ -43,17 +43,18 @@ public class EnemyAI : MonoBehaviour
             seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector2 force)
     {
-        //Debug.Log("TakeDamage");
+        Debug.Log("TakeDamage");
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         animator.SetBool("TakeDMG", true);
+        rb.AddForce(force);
     }
 
     public void TakeDamageOver()
     {
-        //Debug.Log("TakeDamageOver!");
+        Debug.Log("TakeDamageOver!");
         //Debug.Log(currentHealth);
 
         animator.SetBool("TakeDMG", false);
@@ -61,13 +62,13 @@ public class EnemyAI : MonoBehaviour
 
     void death()
     {
-        //Debug.Log("Death");
+        Debug.Log("Death");
         animator.SetBool("Death", true);
     }
 
     public void DeathAnimationOver()
     {
-        //Debug.Log("destroy");
+        Debug.Log("destroy");
         Destroy(gameObject);
     }
 
@@ -101,11 +102,6 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(20f);
-        }
-
         if (currentHealth <= 0f)
         {
             death();
