@@ -45,7 +45,7 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamage(float damage, Vector2 force)
     {
-        Debug.Log("TakeDamage");
+        //Debug.Log("TakeDamage");
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         animator.SetBool("TakeDMG", true);
@@ -54,7 +54,7 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamageOver()
     {
-        Debug.Log("TakeDamageOver!");
+        //Debug.Log("TakeDamageOver!");
         //Debug.Log(currentHealth);
 
         animator.SetBool("TakeDMG", false);
@@ -62,13 +62,13 @@ public class EnemyAI : MonoBehaviour
 
     void death()
     {
-        Debug.Log("Death");
+        //Debug.Log("Death");
         animator.SetBool("Death", true);
     }
 
     public void DeathAnimationOver()
     {
-        Debug.Log("destroy");
+        //Debug.Log("destroy");
         Destroy(gameObject);
     }
 

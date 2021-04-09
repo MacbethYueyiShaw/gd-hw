@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.05
+  m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 1faeefe4000000009fc4aa6b
   m_LightCookieSprite: {fileID: 0}
@@ -8866,14 +8866,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 560065671, guid: ed089184556eb984d95a365e253cbc15, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 560065671, guid: ed089184556eb984d95a365e253cbc15, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 1339052001, guid: ed089184556eb984d95a365e253cbc15, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -9161,6 +9153,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyAI-Eagle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3534597482164909821, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3534597482164909823, guid: 4b3e6c1e88cc34148bc02465f1520f8b,
         type: 3}

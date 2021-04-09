@@ -7,20 +7,15 @@ public class shooting : MonoBehaviour
     public Transform firepoint;
     public Transform arrow;
     public GameObject bulletPrefab;
+    public bool ableToShoot = true;
 
     public float bulletForce = 20f;
 
 
-    // Update is called once per frame
-    void Update()
+     public void Shoot()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }
-    }
-     void Shoot()
-    {
+        if (!ableToShoot)
+            return;
         GameObject bullet = Instantiate(bulletPrefab, arrow.position, firepoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firepoint.up * bulletForce, ForceMode2D.Impulse);

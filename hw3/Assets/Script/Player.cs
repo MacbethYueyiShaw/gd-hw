@@ -6,13 +6,14 @@ public class Player : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public Animator animator;
+    public shooting shoot;
     Rigidbody2D rb;
 
     public float maxHealth = 100f;
 	public float currentHealth;
     public float maxMana = 100f;
     public float currentMana;
-    public float manaRecovery = 1f;
+    public float manaRecovery = 5f;
     public float invincibleTime = 0.5f;
     bool isInvincible = false;
 
@@ -30,8 +31,13 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        if (currentHealth <= 0f)
+        {
+            death();
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 force;
@@ -39,7 +45,7 @@ public class Player : MonoBehaviour
             force.y = 0f;
             TakeDamage(20f, force);
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetButtonDown("Fire1"))
         {
             UseSkill(20f);
         }
@@ -52,6 +58,17 @@ public class Player : MonoBehaviour
             }
             manaBar.SetMana(currentMana);
         }
+    }
+    void death()
+    {
+        //Debug.Log("Death");
+        animator.SetBool("Death", true);
+    }
+
+    public void DeathAnimationOver()
+    {
+        //Debug.Log("destroy");
+        //Destroy(gameObject);
     }
 
     public bool TakeDamage(float damage,Vector2 force)
@@ -71,11 +88,13 @@ public class Player : MonoBehaviour
     {
         if (currentMana < manaCost)
         {
+            shoot.ableToShoot = false;
             Debug.Log("Mana not enough!");
             return;
         }
+        shoot.ableToShoot = true;
         currentMana -= manaCost;
-
+        shoot.Shoot();
         manaBar.SetMana(currentMana);
     }
     void TakeDamageOver()
