@@ -1,18 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //public GameObject levelCompleteUI;
+    public GameObject ingameMenu;
+    public GameObject playerDeadthUI;
+    public Player player;
+    public void CompleteLevel()
     {
-        
+        //Debug.Log("LEVEL WON!");
+        //levelCompleteUI.SetActive(true);
+    }
+    public void PlayerDeath()
+    {
+        Time.timeScale = 0;
+        playerDeadthUI.SetActive(true);
+    }
+    public void GameStart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void GameExit()
+    {
+        Application.Quit();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameRestart()
     {
-        
+        Time.timeScale = 1f;
+        playerDeadthUI.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GamePause()
+    {
+        Time.timeScale = 0;
+        ingameMenu.SetActive(true);
+    }
+
+    public void GameResume()
+    {
+        Time.timeScale = 1f;
+        ingameMenu.SetActive(false);
+        player.gamePaused = false;
     }
 }

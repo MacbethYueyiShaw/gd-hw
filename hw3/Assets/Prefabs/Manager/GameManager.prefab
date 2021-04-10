@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65009182b1a3bd4c9c0207fb4708505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingameMenu: {fileID: 0}
+  playerDeadthUI: {fileID: 0}
+  player: {fileID: 0}

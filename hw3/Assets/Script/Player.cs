@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameManager gm;
     public PlayerMovement playerMovement;
     public Animator animator;
     public shooting shoot;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     public float manaRecovery = 5f;
     public float invincibleTime = 0.5f;
     bool isInvincible = false;
+    public bool gamePaused = false;
 
     public HealthBar healthBar;
     public ManaBar manaBar;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gamePaused) return;
         if (currentHealth <= 0f)
         {
             death();
@@ -45,6 +48,13 @@ public class Player : MonoBehaviour
             force.y = 0f;
             TakeDamage(20f, force);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gamePaused = true;
+            gm.GamePause();
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             UseSkill(20f);
@@ -69,6 +79,7 @@ public class Player : MonoBehaviour
     {
         //Debug.Log("destroy");
         //Destroy(gameObject);
+        gm.PlayerDeath();
     }
 
     public bool TakeDamage(float damage,Vector2 force)
