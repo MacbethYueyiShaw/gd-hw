@@ -6,6 +6,7 @@ public class Cherry : MonoBehaviour
 {
     Animator animator;
     AudioSource audio;
+    bool musicNotPlayed = true;
     public Score score;
     private void Start()
     {
@@ -25,7 +26,11 @@ public class Cherry : MonoBehaviour
         {
             animator.SetBool("Pickup", true);
             player.currentHealth = 100;
-            audio.Play();
+            if (musicNotPlayed)
+            {
+                audio.Play();
+                musicNotPlayed = false;
+            }
         }
        
     }

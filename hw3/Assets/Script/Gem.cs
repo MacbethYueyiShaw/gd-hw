@@ -6,6 +6,7 @@ public class Gem : MonoBehaviour
 {
     Animator animator;
     AudioSource audio;
+    bool musicNotPlayed = true;
     public Score score;
     private void Start()
     {
@@ -24,8 +25,11 @@ public class Gem : MonoBehaviour
         if (player != null)
         {
             animator.SetBool("Pickup", true);
-            audio.Play();
+            if (musicNotPlayed)
+            {
+                audio.Play();
+                musicNotPlayed = false;
+            }
         }
-
     }
 }

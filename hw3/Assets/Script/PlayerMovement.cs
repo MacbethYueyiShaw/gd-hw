@@ -10,7 +10,12 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+    AudioSource audio;
 
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -34,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnLanding()
     {
+        audio.Play();
         animator.SetBool("IsJumping", false);
         //Debug.Log("OnLanding");
     }

@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         if (currentMana < manaCost)
         {
             shoot.ableToShoot = false;
-            Debug.Log("Mana not enough!");
+            //Debug.Log("Mana not enough!");
             return;
         }
         shoot.ableToShoot = true;

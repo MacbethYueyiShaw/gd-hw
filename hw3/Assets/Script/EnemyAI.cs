@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     public Animator animator;
     public GameObject impactEffect;
     public Score score;
-
+    AudioSource audio;
     public HealthBar healthBar;
     public float maxHealth = 100f;
     public float currentHealth;
@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
+    bool isTakingDMG = false;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -31,6 +32,7 @@ public class EnemyAI : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        audio = GetComponent<AudioSource>();
 
         InvokeRepeating("UpdatePath",0f,0.5f);
 
@@ -46,6 +48,9 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamage(float damage, Vector2 force)
     {
+        if (isTakingDMG) return;
+        isTakingDMG = true;
+        audio.Play();
         //Debug.Log("TakeDamage");
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
@@ -59,6 +64,7 @@ public class EnemyAI : MonoBehaviour
         //Debug.Log(currentHealth);
 
         animator.SetBool("TakeDMG", false);
+        isTakingDMG = false;
     }
 
     void death()
