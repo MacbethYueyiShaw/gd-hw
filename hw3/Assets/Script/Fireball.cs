@@ -21,7 +21,7 @@ public class Fireball : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.name);
-        if (collision.name == "player")
+        if (collision.name == "player"|| collision.tag == "Item")
         {
             return;
         }else if(collision.tag == "Enemy")
@@ -32,7 +32,7 @@ public class Fireball : MonoBehaviour
                 if (makeDMG) 
                     return;
                 Vector2 direction = ((Vector2)enemyai.transform.position - (Vector2)transform.position).normalized;
-                Vector2 dashForce = direction * DMG*20f;
+                Vector2 dashForce = direction * DMG * 20f;
                 enemyai.TakeDamage(DMG, dashForce);
                 makeDMG = true;
             }

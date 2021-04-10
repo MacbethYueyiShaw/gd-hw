@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 1688580639021411863}
   - component: {fileID: 1118579249}
   - component: {fileID: 434434292}
+  - component: {fileID: 8028328370698664934}
   m_Layer: 0
   m_Name: EnemyAI-Opossum
   m_TagString: Enemy
@@ -508,6 +509,7 @@ MonoBehaviour:
   animator: {fileID: 1688580639454849956}
   impactEffect: {fileID: 1967835574231978638, guid: 3e196c9e632c76841a71cb6e2dc6d010,
     type: 3}
+  score: {fileID: 0}
   healthBar: {fileID: 376824445}
   maxHealth: 100
   currentHealth: 0
@@ -576,8 +578,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.23523535, y: -0.4001611}
-  m_Size: {x: 1.3391412, y: 0.89168614}
+  m_Offset: {x: -0.1487652, y: -0.34841648}
+  m_Size: {x: 1.1662042, y: 0.8692024}
   m_Direction: 1
 --- !u!70 &434434292
 CapsuleCollider2D:
@@ -592,9 +594,35 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.23496264, y: -0.24208152}
-  m_Size: {x: 1.6692929, y: 1.2563329}
+  m_Offset: {x: -0.23496264, y: -0.2713334}
+  m_Size: {x: 1.6692936, y: 1.0268332}
   m_Direction: 1
+--- !u!61 &8028328370698664934
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688580639021411885}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.1732533, y: 0.30825603}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2295046, y: 0.11348367}
+  m_EdgeRadius: 0
 --- !u!1 &1688580639454849959
 GameObject:
   m_ObjectHideFlags: 0

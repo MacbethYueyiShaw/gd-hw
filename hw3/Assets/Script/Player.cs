@@ -8,13 +8,14 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public Animator animator;
     public shooting shoot;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     public float maxHealth = 100f;
 	public float currentHealth;
     public float maxMana = 100f;
     public float currentMana;
     public float manaRecovery = 5f;
+    public float healthRecovery = 5f;
     public float invincibleTime = 0.5f;
     bool isInvincible = false;
     public bool gamePaused = false;
@@ -67,6 +68,15 @@ public class Player : MonoBehaviour
                 currentMana = maxMana;
             }
             manaBar.SetMana(currentMana);
+        }
+        if (currentHealth <= maxHealth)
+        {
+            currentHealth += healthRecovery * Time.deltaTime;
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+            healthBar.SetHealth(currentHealth);
         }
     }
     void death()
