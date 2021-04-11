@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3402413, g: 0.48153913, b: 0.5591426, a: 1}
+  m_IndirectSpecularColor: {r: 0.29346278, g: 0.4177872, b: 0.48683965, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18295,42 +18295,6 @@ PrefabInstance:
       objectReference: {fileID: 1415471331}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2884ed8796edab4eb991691d479298f, type: 3}
---- !u!4 &1830499277655656880 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8454138087230953989, guid: 291bf4cab766f1c49b5e57d07ad8e5c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 7796888368767701941}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1830499278788745652 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8454138086300436993, guid: 291bf4cab766f1c49b5e57d07ad8e5c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 7796888368767701941}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1830499278788745653 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8454138086300436992, guid: 291bf4cab766f1c49b5e57d07ad8e5c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 7796888368767701941}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1830499278788745655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830499278788745652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0f1b05b00839c4f963818c94fa321a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3770816669609679918, guid: ae98525829025f54298d524ee4e7b967,
-    type: 3}
-  firepoint: {fileID: 1830499278788745653}
-  arrow: {fileID: 1830499277655656880}
-  cd: 1
-  bulletForce: 20
 --- !u!1001 &3107810676548204096
 PrefabInstance:
   m_ObjectHideFlags: 0
