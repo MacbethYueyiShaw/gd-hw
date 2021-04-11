@@ -18,5 +18,13 @@ public class DeadZone : MonoBehaviour
             player.ResetPosition();
         }
         //Destroy(gameObject);
+        else if(hitInfo.tag == "Enemy")
+        {
+            EnemyAI enemy = hitInfo.GetComponent<EnemyAI>();
+            Vector2 dashForce;
+            dashForce.x = 0f;
+            dashForce.y = 0f;
+            enemy.TakeDamage(9999f, dashForce); 
+        }
     }
 }
