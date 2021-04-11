@@ -21,6 +21,17 @@ public class Spike : MonoBehaviour
             if (player.TakeDamage(atk, dashForce))
                 Instantiate(impactEffect, hitInfo.transform.position - offset, hitInfo.transform.rotation);
         }
+        else if (hitInfo.tag == "Enemy")
+        {
+            EnemyAI enemyai = hitInfo.GetComponent<EnemyAI>();
+            if (enemyai != null)
+            {
+                Vector2 direction = ((Vector2)enemyai.transform.position - (Vector2)transform.position).normalized;
+                Vector2 dashForce = direction * atk * 20f;
+                enemyai.TakeDamage(atk, dashForce);
+            }
+            Instantiate(impactEffect, hitInfo.transform.position, hitInfo.transform.rotation);
+        }
         //Destroy(gameObject);
     }
     private void OnTriggerStay2D(Collider2D hitInfo)
@@ -37,6 +48,17 @@ public class Spike : MonoBehaviour
             offset.z = 0f;
             if (player.TakeDamage(atk, dashForce))
                 Instantiate(impactEffect, hitInfo.transform.position - offset, hitInfo.transform.rotation);
+        }
+        else if (hitInfo.tag == "Enemy")
+        {
+            EnemyAI enemyai = hitInfo.GetComponent<EnemyAI>();
+            if (enemyai != null)
+            {
+                Vector2 direction = ((Vector2)enemyai.transform.position - (Vector2)transform.position).normalized;
+                Vector2 dashForce = direction * atk * 20f;
+                enemyai.TakeDamage(atk, dashForce);
+            }
+            Instantiate(impactEffect, hitInfo.transform.position, hitInfo.transform.rotation);
         }
         //Destroy(gameObject);
     }
