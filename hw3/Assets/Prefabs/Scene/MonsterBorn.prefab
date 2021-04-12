@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005448cdfcd602f48a16f074381ebb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster: {fileID: 3534597482164909823, guid: 4b3e6c1e88cc34148bc02465f1520f8b, type: 3}
+  monster: {fileID: 7796888367736420560, guid: 291bf4cab766f1c49b5e57d07ad8e5c9, type: 3}
   score: {fileID: 0}
 --- !u!58 &3532540423568574987
 CircleCollider2D:

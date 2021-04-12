@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterBorn : MonoBehaviour
 {
     bool hasBorned = false;
-    public EnemyAI monster;
+    public GameObject monster;
     public Score score;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,10 +17,19 @@ public class MonsterBorn : MonoBehaviour
             Player player = collision.GetComponent<Player>();
             if (player != null)
             {
-                EnemyAI mons = Instantiate(monster, transform.position, Quaternion.identity);
-                mons.target = player.transform;
-                mons.score = score;
+                GameObject mons = Instantiate(monster, transform.position, Quaternion.identity);
+                EnemyAI enemyAI = mons.GetComponents<EnemyAI>()[0];
+                enemyAI.target = player.transform;
+                enemyAI.score = score;
 
+                if (mons.GetComponentsInChildren<MonsterFirePoint>().Length > 0)
+                {
+                    MonsterFirePoint firePoint = mons.GetComponentsInChildren<MonsterFirePoint>()[0];
+                    if (firePoint != null)
+                    {
+                        firePoint.target = player.transform;
+                    }
+                }
                 hasBorned = true;
                 Destroy(gameObject);
             } 
