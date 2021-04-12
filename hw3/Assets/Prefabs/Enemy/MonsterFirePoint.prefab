@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 2785369316970014577}
   - component: {fileID: 2785369316970014578}
   - component: {fileID: 4593851697438053359}
+  - component: {fileID: 1830499278788745655}
   m_Layer: 8
   m_Name: MonsterFirePoint
   m_TagString: Untagged
@@ -150,3 +151,21 @@ MonoBehaviour:
   target: {fileID: 0}
   follow: {fileID: 0}
   rb: {fileID: 2785369316970014578}
+--- !u!114 &1830499278788745655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2785369316970014576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0f1b05b00839c4f963818c94fa321a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3770816669609679918, guid: ae98525829025f54298d524ee4e7b967,
+    type: 3}
+  firepoint: {fileID: 2785369316970014577}
+  arrow: {fileID: 2785369316089706356}
+  cd: 2
+  bulletForce: 10

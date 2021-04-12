@@ -96,7 +96,7 @@ public class EnemyAI : MonoBehaviour
         if (player != null)
         {
             Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
-            Vector2 dashForce = direction * atk * 200f;
+            Vector2 dashForce = direction * atk * 50f;
             Vector3 offset;
             offset.x = 0f;
             offset.y = 0.5f;

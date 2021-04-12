@@ -221,8 +221,8 @@ GameObject:
   - component: {fileID: 7796888367736420573}
   - component: {fileID: 7796888367736420562}
   - component: {fileID: 7796888367736420563}
-  - component: {fileID: 7796888367736420569}
   - component: {fileID: 7796888367736420568}
+  - component: {fileID: 212550330969089559}
   m_Layer: 0
   m_Name: EnemyAI-Crab
   m_TagString: Enemy
@@ -268,9 +268,9 @@ MonoBehaviour:
   healthBar: {fileID: 7796888367073640248}
   maxHealth: 100
   currentHealth: 0
-  speed: 500
+  speed: 1003.25
   atk: 10
-  nextWaypointDistance: 3
+  nextWaypointDistance: 5.06
 --- !u!82 &7796888367736420572
 AudioSource:
   m_ObjectHideFlags: 0
@@ -281,8 +281,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 87e2452fe2c754248926c9a9ab93a467, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -379,8 +379,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 3
+  m_LinearDrag: 0.45
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -401,7 +401,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12312126, y: 0.6500256}
+  m_Offset: {x: -0.10297096, y: 0.6500256}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -412,7 +412,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1112785, y: 0.11851692}
+  m_Size: {x: 0.6948359, y: 0.11851692}
   m_EdgeRadius: 0
 --- !u!70 &7796888367736420563
 CapsuleCollider2D:
@@ -430,22 +430,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.10256106, y: -0.16558182}
   m_Size: {x: 1.1611072, y: 1.5621026}
   m_Direction: 0
---- !u!58 &7796888367736420569
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7796888367736420560}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.038553953, y: -0.59410834}
-  serializedVersion: 2
-  m_Radius: 0.29276943
 --- !u!114 &7796888367736420568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,6 +458,22 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!70 &212550330969089559
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7796888367736420560}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.100752115, y: -0.17127848}
+  m_Size: {x: 0.70150423, y: 1.5574961}
+  m_Direction: 0
 --- !u!1 &7796888368114203023
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,24 +836,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1830499278788745655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8454138086300436993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0f1b05b00839c4f963818c94fa321a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3770816669609679918, guid: ae98525829025f54298d524ee4e7b967,
-    type: 3}
-  firepoint: {fileID: 8454138086300436992}
-  arrow: {fileID: 8454138087230953989}
-  cd: 1
-  bulletForce: 20
 --- !u!1001 &6049670682093874545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -926,28 +908,11 @@ PrefabInstance:
       propertyPath: follow
       value: 
       objectReference: {fileID: 7796888367736420573}
-    - target: {fileID: 4593851697438053359, guid: f25685f69ad97914bbe2deddf9a939cb,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f25685f69ad97914bbe2deddf9a939cb, type: 3}
---- !u!1 &8454138086300436993 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2785369316970014576, guid: f25685f69ad97914bbe2deddf9a939cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 6049670682093874545}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8454138086300436992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2785369316970014577, guid: f25685f69ad97914bbe2deddf9a939cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 6049670682093874545}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8454138087230953989 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2785369316089706356, guid: f25685f69ad97914bbe2deddf9a939cb,
     type: 3}
   m_PrefabInstance: {fileID: 6049670682093874545}
   m_PrefabAsset: {fileID: 0}
