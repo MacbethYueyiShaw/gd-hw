@@ -3,6 +3,7 @@
     Properties
     {
         _MainTex("Main Texture", 2D) = "white" {}
+        _Shininess("Shininess",range(1,32)) = 8
         //_MainColor("Main Color", Color) = (1,1,1,1)
     }
 
@@ -19,6 +20,7 @@
            
             sampler2D _MainTex; 
             float4 _MainTex_ST;
+            float _Shininess;
 
            /* struct VertexData {
                 float4 position : POSITION;
@@ -58,10 +60,17 @@
                
                 float3 lightDir = _WorldSpaceLightPos0.xyz;
                 float3 lightColor = _LightColor0.rgb;
+
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 halfVector = normalize(lightDir + viewDir);
+
+                //diffuse
                 float3 diffuse = tex2D(_MainTex, i.uv).rgb * lightColor * DotClamped(lightDir, i.normal);
-                return float4(diffuse, 1);
+
+                //specular
+                float spec = pow(max(dot(i.normal, halfVector), 0.0), _Shininess);
+                float3 specular = lightColor * spec;
+                return float4(diffuse+specular, 1);
             }
             
             ENDCG
