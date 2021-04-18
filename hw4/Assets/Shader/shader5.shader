@@ -72,10 +72,11 @@
                 fixed3 tangentViewDir = normalize(i.viewDir);
 
                 fixed4 texColor = tex2D(_MainTex, i.uv)* _Color;
-                //fixed3 tnormal = UnpackNormal(tex2D(_BumpMap, i.uv));
                 fixed4 packedNormal = tex2D(_BumpMap, i.uv.zw);
-                fixed3 tnormal;
-                tnormal.xy = (2 * packedNormal - 1) * _BumpScale;
+                fixed3 tnormal = UnpackNormal(packedNormal);
+   
+                //fixed3 tnormal;
+                tnormal.xy *= _BumpScale;
                 tnormal.z = sqrt(1.0 - saturate(dot(tnormal.xy, tnormal.xy)));
 
                 fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
