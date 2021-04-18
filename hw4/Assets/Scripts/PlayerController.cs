@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 /*[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(ConfigurableJoint))]*/
@@ -13,9 +14,13 @@ public class PlayerController : MonoBehaviour {
 	private LayerMask mask;
 	[SerializeField]
 	public GameObject[] prefabList;
+	[SerializeField]
+	public Material[] materialList;
 
+	public Image currentCube;
 
 	private Vector3 fly = Vector3.zero;
+	private int index=0;
 	public Rigidbody rb;
 	public Camera cam;
 
@@ -139,6 +144,30 @@ public class PlayerController : MonoBehaviour {
 		{
 			Place();
 		}
+        if (Input.GetButtonDown("next"))
+        {
+            if (index == prefabList.Length-1)
+            {
+				index = 0;
+            }
+            else
+            {
+				index++;
+            }
+			currentCube.material = materialList[index];
+		}
+		if (Input.GetButtonDown("last"))
+		{
+			if (index == 0)
+			{
+				index = prefabList.Length - 1;
+			}
+			else
+			{
+				index--;
+			}
+			currentCube.material = materialList[index];
+		}
 		/*// Calculate the thrusterforce based on player input
 		Vector3 _thrusterForce = Vector3.zero;
 		if (Input.GetButton ("Jump") && thrusterFuelAmount > 0f)
@@ -176,7 +205,7 @@ public class PlayerController : MonoBehaviour {
 		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out _hit, 5f , mask))
 		{
 			// We hit something, call the OnHit method on the server
-			Debug.Log("Hit : "+_hit.collider.name+"hit pos: "+_hit.point);
+			//Debug.Log("Hit : "+_hit.collider.name+"hit pos: "+_hit.point);
 		}
 
 	}
@@ -186,10 +215,10 @@ public class PlayerController : MonoBehaviour {
 		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out _hit, 5f, mask))
 		{
 			// We hit something, call the OnHit method on the server
-			Debug.Log("Hit : " + _hit.collider.name);
+			//Debug.Log("Hit : " + _hit.collider.name);
             if (_hit.rigidbody != null)
             {
-				GameObject cube = Instantiate(prefabList[0], _hit.rigidbody.position + _hit.normal, _hit.rigidbody.rotation);
+				GameObject cube = Instantiate(prefabList[index], _hit.rigidbody.position + _hit.normal, _hit.rigidbody.rotation);
 			}
 		}
 
