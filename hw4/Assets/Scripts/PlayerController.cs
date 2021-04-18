@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour {
 	private float speed = 5f;
 	[SerializeField]
 	private float lookSensitivity = 3f;
+	[SerializeField]
+	private LayerMask mask;
+	private Vector3 fly = Vector3.zero;
+	public Rigidbody rb;
+	public Camera cam;
 
 /*	[SerializeField]
 	private float thrusterForce = 1000f;
@@ -41,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 	void Start ()
 	{
 		motor = GetComponent<PlayerMotor>();
+		fly.y = 1.0f;
 		//joint = GetComponent<ConfigurableJoint>();
 		//animator = GetComponent<Animator>();
 
@@ -49,6 +55,10 @@ public class PlayerController : MonoBehaviour {
 
 	void Update ()
 	{
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+			Cursor.lockState = CursorLockMode.Locked;
+		}
 		/*if (PauseMenu.IsOn)
 		{
 			if (Cursor.lockState != CursorLockMode.None)
@@ -109,7 +119,18 @@ public class PlayerController : MonoBehaviour {
 
 		//Apply camera rotation
 		motor.RotateCamera(_cameraRotationX);
-
+		if (Input.GetButton("Jump"))
+		{
+			rb.MovePosition(rb.position + fly * Time.fixedDeltaTime);
+		}
+		if (Input.GetButton("flydown"))
+		{
+			rb.MovePosition(rb.position - fly * Time.fixedDeltaTime);
+		}
+		if (Input.GetButtonDown("Fire1"))
+		{
+			Shoot();
+		}
 		/*// Calculate the thrusterforce based on player input
 		Vector3 _thrusterForce = Vector3.zero;
 		if (Input.GetButton ("Jump") && thrusterFuelAmount > 0f)
@@ -141,5 +162,14 @@ public class PlayerController : MonoBehaviour {
 			maximumForce = jointMaxForce
 		};
 	}*/
+	void Shoot()
+	{
+		RaycastHit _hit;
+		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out _hit, 100f , mask))
+		{
+			// We hit something, call the OnHit method on the server
+			Debug.Log("Hit : "+_hit.collider.name);
+		}
 
+	}
 }
