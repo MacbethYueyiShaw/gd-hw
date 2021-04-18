@@ -13,7 +13,8 @@ public class CustomShaderGUI : ShaderGUI
     enum RenderingMode
     {
         BlinnPhong = 0,
-        NormalTexture = 1
+        NormalTexture = 1,
+        Normal = 2
     }
 
     public override void OnGUI(MaterialEditor editor, MaterialProperty[] properties)
@@ -52,16 +53,32 @@ public class CustomShaderGUI : ShaderGUI
         //rendering mode
         RenderingMode renderingMode = RenderingMode.NormalTexture;
         if (target.IsKeywordEnabled("RENDERING_MODE_BLINN"))
-            renderingMode = RenderingMode.BlinnPhong;
+        {
+            if(target.IsKeywordEnabled("RENDERING_MODE_NORMAL"))
+                renderingMode = RenderingMode.Normal;
+            else renderingMode = RenderingMode.BlinnPhong;
+        }
+        else renderingMode = RenderingMode.NormalTexture;
+
 
         EditorGUI.BeginChangeCheck();
         renderingMode = (RenderingMode)EditorGUILayout.EnumPopup(new GUIContent("Rendering Mode:"), renderingMode);
         if (EditorGUI.EndChangeCheck())
         {
-            if (renderingMode == RenderingMode.BlinnPhong)
+            if (renderingMode == RenderingMode.Normal)
+            {
                 target.EnableKeyword("RENDERING_MODE_BLINN");
-            else
+                target.EnableKeyword("RENDERING_MODE_NORMAL");
+            }
+            else if(renderingMode == RenderingMode.BlinnPhong)
+            {
+                target.EnableKeyword("RENDERING_MODE_BLINN");
+                target.DisableKeyword("RENDERING_MODE_NORMAL");
+            }else if(renderingMode == RenderingMode.NormalTexture)
+            {
                 target.DisableKeyword("RENDERING_MODE_BLINN");
+                target.DisableKeyword("RENDERING_MODE_NORMAL");
+            }           
         }
 
         if (renderingMode == RenderingMode.NormalTexture)

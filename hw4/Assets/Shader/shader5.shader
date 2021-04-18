@@ -27,6 +27,7 @@
             #pragma fragment frag
             #pragma shader_feature USE_SPECULAR
             #pragma shader_feature RENDERING_MODE_BLINN
+            #pragma shader_feature RENDERING_MODE_NORMAL
            
             fixed4 _Color;
             sampler2D _MainTex;
@@ -88,8 +89,15 @@
                 float3 viewDir_b = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 halfVector = normalize(lightDir_b + viewDir_b);
 
+                //ambient
+                fixed3 ambient_b = UNITY_LIGHTMODEL_AMBIENT.xyz * tex2D(_MainTex, i.uv).rgb;
+
                 //diffuse
-                float3 diffuse_b = tex2D(_MainTex, i.uv).rgb * lightColor_b * DotClamped(lightDir_b, i.normal);
+                float3 diffuse_b= tex2D(_MainTex, i.uv).rgb * lightColor_b * DotClamped(lightDir_b, i.normal);
+                #if RENDERING_MODE_NORMAL
+                diffuse_b = tex2D(_MainTex, i.uv).rgb * lightColor_b * DotClamped(lightDir_b, i.normal);
+                return float4(ambient_b + diffuse_b, 1);
+                #endif
 
                 //specular
                 float3 specular_b = float3(0, 0, 0);
@@ -97,7 +105,7 @@
                 float spec_b = pow(max(dot(i.normal, halfVector), 0.0), _Gloss);
                 specular_b = lightColor_b * spec_b;
                 #endif
-                return float4(diffuse_b + specular_b, 1);
+                return float4(ambient_b + diffuse_b + specular_b, 1);
                 #endif
 
                 //NORMAL TEXTURE
