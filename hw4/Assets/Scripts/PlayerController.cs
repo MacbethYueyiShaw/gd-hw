@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private float speed = 5f;
 	[SerializeField]
-	private float lookSensitivity = 6f;
+	private float lookSensitivity = 3f;
 	[SerializeField]
 	private LayerMask mask;
 	[SerializeField]
