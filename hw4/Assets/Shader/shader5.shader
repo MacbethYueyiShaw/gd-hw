@@ -25,6 +25,8 @@
             #include "Lighting.cginc"
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature USE_SPECULAR
+            #pragma shader_feature RENDERING_MODE_BLINN
            
             fixed4 _Color;
             sampler2D _MainTex;
@@ -47,9 +49,19 @@
                 float4 uv : TEXCOORD0;
                 float3 lightDir  : TEXCOORD1;
                 float3 viewDir  : TEXCOORD2;
+                float3 normal : TEXCOORD3;
+                float3 worldPos : TEXCOORD4;
             };
 
             v2f vert(a2v v) {
+                #if RENDERING_MODE_BLINN
+                v2f i;
+                i.pos = UnityObjectToClipPos(v.position);
+                i.normal = UnityObjectToWorldNormal(v.normal);
+                i.uv.xy = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
+                i.worldPos = mul(unity_ObjectToWorld, v.position);
+                return i;
+                #endif
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.position);
 
@@ -68,6 +80,27 @@
 
             
             fixed4 frag(v2f i) : SV_TARGET{
+                //BLINN PHONG MODE
+                #if RENDERING_MODE_BLINN
+                float3 lightDir_b = _WorldSpaceLightPos0.xyz;
+                float3 lightColor_b = _LightColor0.rgb;
+
+                float3 viewDir_b = normalize(_WorldSpaceCameraPos - i.worldPos);
+                float3 halfVector = normalize(lightDir_b + viewDir_b);
+
+                //diffuse
+                float3 diffuse_b = tex2D(_MainTex, i.uv).rgb * lightColor_b * DotClamped(lightDir_b, i.normal);
+
+                //specular
+                float3 specular_b = float3(0, 0, 0);
+                #if USE_SPECULAR
+                float spec_b = pow(max(dot(i.normal, halfVector), 0.0), _Gloss);
+                specular_b = lightColor_b * spec_b;
+                #endif
+                return float4(diffuse_b + specular_b, 1);
+                #endif
+
+                //NORMAL TEXTURE
                 fixed3 tangentLightDir = normalize(i.lightDir);
                 fixed3 tangentViewDir = normalize(i.viewDir);
 
@@ -84,7 +117,12 @@
                 fixed3 diffuse = _LightColor0.rgb * texColor * saturate(dot(tnormal, tangentLightDir));
 
                 fixed3 halfDir = normalize(tangentLightDir + tangentViewDir);
-                fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(saturate(dot(tnormal, halfDir)), _Gloss);
+
+                //specular
+                fixed3 specular = float3(0, 0, 0);
+                #if USE_SPECULAR
+                specular = _LightColor0.rgb * _Specular.rgb * pow(saturate(dot(tnormal, halfDir)), _Gloss);
+                #endif
 
                 return fixed4(ambient + diffuse + specular, 1.0);
             }
@@ -92,4 +130,5 @@
             ENDCG
         }
     }
+            CustomEditor "CustomShaderGUI"
 }
