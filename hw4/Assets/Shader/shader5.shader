@@ -71,7 +71,7 @@
                 fixed3 tangentLightDir = normalize(i.lightDir);
                 fixed3 tangentViewDir = normalize(i.viewDir);
 
-                fixed4 texColor = tex2D(_MainTex, i.uv);
+                fixed4 texColor = tex2D(_MainTex, i.uv)* _Color;
                 //fixed3 tnormal = UnpackNormal(tex2D(_BumpMap, i.uv));
                 fixed4 packedNormal = tex2D(_BumpMap, i.uv.zw);
                 fixed3 tnormal;
