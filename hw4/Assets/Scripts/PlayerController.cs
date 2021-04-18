@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	public Material[] materialList;
 
 	public Image currentCube;
+	public GameObject selectCube;
 
 	private Vector3 fly = Vector3.zero;
 	private int index=0;
@@ -146,7 +147,7 @@ public class PlayerController : MonoBehaviour {
 		}
         if (Input.GetButtonDown("next"))
         {
-            if (index == prefabList.Length-1)
+            if (index == prefabList.Length - 1)
             {
 				index = 0;
             }
@@ -155,6 +156,9 @@ public class PlayerController : MonoBehaviour {
 				index++;
             }
 			currentCube.material = materialList[index];
+			Renderer rend = selectCube.GetComponent<Renderer>();
+			rend.enabled = true;
+            rend.sharedMaterial = materialList[index];
 		}
 		if (Input.GetButtonDown("last"))
 		{
@@ -167,6 +171,10 @@ public class PlayerController : MonoBehaviour {
 				index--;
 			}
 			currentCube.material = materialList[index];
+			Renderer rend = selectCube.GetComponent<Renderer>();
+			rend.enabled = true;
+			rend.sharedMaterial = materialList[index];
+
 		}
 		/*// Calculate the thrusterforce based on player input
 		Vector3 _thrusterForce = Vector3.zero;
