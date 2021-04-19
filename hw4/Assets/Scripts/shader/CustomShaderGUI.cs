@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using System;
+
+
 public class CustomShaderGUI : ShaderGUI
 {
     MaterialEditor editor;
@@ -97,3 +100,4 @@ public class CustomShaderGUI : ShaderGUI
         }
     }
 }
+#endif

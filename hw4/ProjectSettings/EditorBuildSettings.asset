@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FinalProj.unity
+    guid: 9b375b382fb321d48b7eca66c59ca691
+  - enabled: 1
+    path: Assets/Scenes/DIYShader.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/StandardOutline.unity
+    guid: 731356289e691cf478ab5ccb2ba0ddc1
   m_configObjects: {}
