@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: NormalTex
   m_Shader: {fileID: 4800000, guid: ada840203cebfe7489fe3ba12e27a213, type: 3}
-  m_ShaderKeywords: RENDERING_MODE_NORMAL USE_SPECULAR _NORMALMAP
+  m_ShaderKeywords: RENDERING_MODE_BLINN RENDERING_MODE_NORMAL USE_SPECULAR _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
