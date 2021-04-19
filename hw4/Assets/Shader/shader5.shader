@@ -81,6 +81,11 @@
 
             
             fixed4 frag(v2f i) : SV_TARGET{
+                //NORMAL MODE
+                #if RENDERING_MODE_NORMAL
+                return float4(i.normal, 1);
+                #endif
+
                 //BLINN PHONG MODE
                 #if RENDERING_MODE_BLINN
                 float3 lightDir_b = _WorldSpaceLightPos0.xyz;
@@ -94,10 +99,6 @@
 
                 //diffuse
                 float3 diffuse_b= tex2D(_MainTex, i.uv).rgb * lightColor_b * DotClamped(lightDir_b, i.normal);
-                #if RENDERING_MODE_NORMAL
-                diffuse_b = tex2D(_MainTex, i.uv).rgb * lightColor_b * DotClamped(lightDir_b, i.normal);
-                return float4(ambient_b + diffuse_b, 1);
-                #endif
 
                 //specular
                 float3 specular_b = float3(0, 0, 0);
