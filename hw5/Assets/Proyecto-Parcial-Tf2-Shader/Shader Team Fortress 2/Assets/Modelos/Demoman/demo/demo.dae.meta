@@ -526,16 +526,6 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: models_effects_smiley
-    second: {fileID: 2100000, guid: 0044d91a0f5ce9a4ebfb7e802f1fe88e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: models_player_demo_demoman_head_red
-    second: {fileID: 2100000, guid: c1686acbb7674cc4f93c87a8a1309f89, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: models_player_demo_demoman_red
     second: {fileID: 2100000, guid: e55bfea1a3475d9418778e70122790ff, type: 2}
   - first:
