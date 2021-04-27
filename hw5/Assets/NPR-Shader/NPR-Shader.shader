@@ -127,7 +127,6 @@
                 //ambient cube
                 float3 ambient_cube = texCUBE(_CubeMap, i.normal).rgb;
                 //return fixed4(ambient, 1.0);
-                half3 viewIndependentLight = albedo * _LightColor0.rgb * diffuseWarping;
 
                 //View Dependent Lighting
                 //Multiple Phong Terms
@@ -140,21 +139,17 @@
                 half4 kr = tex2D(_RimMask, i.uv);
                 half3 rimTerm = fresnelRim * kr * pow(i.VdotN, _Krim);
 
-                half3 multiplePhongTerms = rimTerm;
+                //caculate all light term
+                half3 viewIndependentLight = albedo * _LightColor0.rgb * diffuseWarping;
+                half3 multiplePhongTerms = _LightColor0.rgb * ks * max(specularTerm, rimTerm);
                 half3 dedicatedRimLighting = i.NdotU * fresnelRim * kr;
+                half3 viewDependentLight = multiplePhongTerms + dedicatedRimLighting;
 
                 half4 col;
-                col.rgb = multiplePhongTerms + dedicatedRimLighting;
+                col.rgb = viewIndependentLight + viewDependentLight;
                 col.a = 1;
 
                 return col;
-
-                fixed4 finalColor;
-                finalColor.rgb = diffuseWarping * ambient_cube;
-
-                return finalColor;
-                
-              
                
             }
             ENDCG
