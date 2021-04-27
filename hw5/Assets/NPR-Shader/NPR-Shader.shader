@@ -127,6 +127,7 @@
                 //ambient cube
                 float3 ambient_cube = texCUBE(_CubeMap, i.normal).rgb;
                 //return fixed4(ambient, 1.0);
+                half3 viewIndependentLight = albedo * _LightColor0.rgb * diffuseWarping;
 
                 //View Dependent Lighting
                 //Multiple Phong Terms
