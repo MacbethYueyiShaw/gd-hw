@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCube : MonoBehaviour
+public class Cube_bad : MonoBehaviour
 {
     public GameManager gm;
     private float existTime = 2f;
     private float currTime = 0f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +17,12 @@ public class BaseCube : MonoBehaviour
     void Update()
     {
         currTime += Time.deltaTime;
-        if(currTime>existTime)
+        if (currTime > existTime)
             Destroy(gameObject);
     }
     public void CubeClick()
     {
-        gm.GetScore(1);
+        gm.LoseScore(5);
         Destroy(gameObject);
     }
 }

@@ -8,13 +8,15 @@ public class GameManager : MonoBehaviour
     public Slider timeBar;
     public Text scoreText;
     public GameObject[] cubeList;
+    public GameObject timeOverUI;
+    public GameObject startUI;
 
     public float MaxTime = 30f;
     private float CurrentTime = 0f;
-    private float generateCubeCD = 3f;
+    public float generateCubeCD = 1.0f;
     private float CurrentCD = 0f;
     private int score = 0;
-    private bool gameRunning = true;
+    private bool gameRunning = false;
 
     private void Update()
     {
@@ -38,12 +40,21 @@ public class GameManager : MonoBehaviour
         timeBar.value = 1.0f - CurrentTime/MaxTime;
     }
 
-    void Restart()
+    public void GameStart()
     {
+        score = 0;
         CurrentTime = 0f;
         CurrentCD = 0f;
         SetTimeBar();
+        UpdateScoreText();
         gameRunning = true;
+        startUI.SetActive(false);
+        timeOverUI.SetActive(false);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     void GenerateCube()
@@ -57,13 +68,34 @@ public class GameManager : MonoBehaviour
         cube.transform.position = new Vector3(
             Mathf.Sin(rad) * r, Random.Range(-0.5f, 0.5f), Mathf.Cos(rad) * r
         );
-        BaseCube baseCube = cube.GetComponent<BaseCube>();
-        baseCube.gm = this;
+        if (index==0)
+        {
+            BaseCube baseCube = cube.GetComponent<BaseCube>();
+            baseCube.gm = this;
+        }
+        else if (index == 1)
+        {
+            Cube_bad tmp_cube = cube.GetComponent<Cube_bad>();
+            tmp_cube.gm = this;
+        }
+        else if (index == 2)
+        {
+            Cube_scaling tmp_cube = cube.GetComponent<Cube_scaling>();
+            tmp_cube.gm = this;
+        }
+        else if (index == 3)
+        {
+            Cube_shaking tmp_cube = cube.GetComponent<Cube_shaking>();
+            tmp_cube.gm = this;
+        }
+       
     }
 
     void GameOver()
     {
         gameRunning = false;
+        timeOverUI.SetActive(true);
+        startUI.SetActive(true);
     }
 
     public void GetScore(int pt)
