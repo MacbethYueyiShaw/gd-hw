@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 // 实验A：模拟自由落体运动-Explicit Euler方法
 // TODO: 
 // 1. 参考注释补全代码，用Explicit Euler方法模拟自由落体和反弹运动
@@ -10,10 +9,10 @@ using UnityEngine;
 class LabA : MonoBehaviour
 {
     private double g = 9.79;
-    private double height;
+    public double height;
     private float x;
     private float z;
-    private double v;
+    public double v;
 
     private int step = 2; // You can change this!
     private int count; // used to control the frequency of updates
@@ -22,11 +21,16 @@ class LabA : MonoBehaviour
     void UpdateHeight()
     {
         // 1. update height, move at speed of v for one time step
-
+        double t = step * Time.deltaTime;
+        height +=  v * t;
         // 2. calculate v in the next time step
-
+        v -= g * t;
         // 3. change direction if needed, reset initial values
-
+        if (height<= transform.localScale.y / 2)
+        {
+            height = transform.localScale.y / 2;
+            v = -v;
+        }
     }
 
     // Start is called before the first frame update
