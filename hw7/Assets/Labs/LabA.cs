@@ -28,7 +28,6 @@ class LabA : MonoBehaviour
         // 3. change direction if needed, reset initial values
         if (height<= transform.localScale.y / 2)
         {
-            height = transform.localScale.y / 2;
             v = -v;
         }
     }

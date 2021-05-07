@@ -73,17 +73,13 @@ class LabC : MonoBehaviour
         float tmpTheta = theta;
         float startOmega = omega;
         // 2. calculate tmp theta and omega if needed
-        float endOmega;
-        endOmega = startOmega - t * Mathf.Sin(tmpTheta) * g / length;
+        float endTheta = tmpTheta + startOmega * t;
+        float endOmega = startOmega - t * Mathf.Sin(tmpTheta) * g / length;
         float averageOmega = (startOmega + endOmega) / 2;
-        float t1 = (averageOmega - startOmega) / (Mathf.Sin(tmpTheta) * g / length);
-        float t2 = t - t1;
-        float midTheta = tmpTheta + t1 * (startOmega+averageOmega)/2;
-        float trueFinalOmega = averageOmega - t2 * Mathf.Sin(midTheta) * g / length;
         // 3. update theta
         theta = tmpTheta + t * averageOmega;
         // 4. update omega
-        omega = trueFinalOmega;
+        omega = startOmega - g / length * Mathf.Sin((tmpTheta + endTheta) / 2) * t ;
         // 5. move the object to the new postion
         deltaTheta = theta - tmpTheta;
         SetPosition(deltaTheta);
