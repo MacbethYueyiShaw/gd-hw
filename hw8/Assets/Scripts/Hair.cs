@@ -49,6 +49,7 @@ public class Hair : MonoBehaviour
         for (int i = 0; i < size; i++) {
             Vector3 pos = root.transform.position;
             pos.x = i * spacing;
+            pos.z = i * spacing;
             HairParticle tmp_particle = new HairParticle();
            
             if (i == 0)
@@ -77,7 +78,7 @@ public class Hair : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.deltaTime);
+        //Debug.Log(Time.deltaTime);
         counter++;
         if (counter <= step)
         {
@@ -124,7 +125,14 @@ public class Hair : MonoBehaviour
         }
 
         //constrain
-        curr_particle.curPos = ((curr_particle.curPos - curr_particle.parent_transform.position).normalized * curr_particle.length) + curr_particle.parent_transform.position;
+        Vector3 distance = curr_particle.curPos - curr_particle.parent_transform.position;
+        float length = Vector3.Distance(curr_particle.curPos, curr_particle.parent_transform.position);
+        Vector3 delta = distance.normalized * (length-curr_particle.length)/2;
+        curr_particle.curPos = curr_particle.curPos - delta;
+        if (curr_particle.index > 1)
+        {
+            particles[curr_particle.index-1].curPos = particles[curr_particle.index - 1].curPos + delta;
+        }
 
 
 

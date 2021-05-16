@@ -223,13 +223,13 @@ MonoBehaviour:
   root: {fileID: 629235901}
   hairParticle: {fileID: 5304028115473291988, guid: 18f6226b50a8be445b64ff8463fd47c3,
     type: 3}
-  size: 10
+  size: 20
   head: {fileID: 556124511}
   head_radius: 0.5
-  spacing: 0.1
-  damping: 0.678
+  spacing: 0.11
+  damping: 0.403
   gravity: 9.8
-  step: 5
+  step: 4
   counter: 0
   pr: 0.05
 --- !u!135 &556124508
