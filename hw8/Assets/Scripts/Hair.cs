@@ -84,9 +84,9 @@ public class Hair : MonoBehaviour
         }
 
         for (int i = 0; i < size; i++)
-        {  
-            Constrain(particles[i]);
+        {
             CheckCollision(particles[i]);
+            Constrain(particles[i]);
         }
 
         //fix the root
@@ -118,9 +118,9 @@ public class Hair : MonoBehaviour
         //Head
         if (Vector3.Distance(curr_particle.curPos, head.position) <= (head_radius + curr_particle.radius))
         {
-            Debug.Log(Vector3.Distance(curr_particle.curPos, head.position));
+           /* Debug.Log(Vector3.Distance(curr_particle.curPos, head.position));
             Debug.Log(head_radius + curr_particle.radius);
-            Debug.Log(curr_particle.index.ToString() + " collison with head");
+            Debug.Log(curr_particle.index.ToString() + " collison with head");*/
             Vector3 normal = (curr_particle.curPos - head.position).normalized;
             curr_particle.curPos = head.position + (normal * (head_radius + curr_particle.radius));
         }
@@ -130,9 +130,9 @@ public class Hair : MonoBehaviour
             if (i == curr_particle.index) continue;
             if (Vector3.Distance(curr_particle.curPos, particles[i].curPos) <= (particles[i].radius + curr_particle.radius))
             {
-                Debug.Log(Vector3.Distance(curr_particle.curPos, particles[i].curPos));
+                /*Debug.Log(Vector3.Distance(curr_particle.curPos, particles[i].curPos));
                 Debug.Log(particles[i].radius + curr_particle.radius);
-                Debug.Log(curr_particle.index.ToString() + " collison with " + i.ToString());
+                Debug.Log(curr_particle.index.ToString() + " collison with " + i.ToString());*/
                 Vector3 normal = (curr_particle.curPos - particles[i].curPos).normalized;
                 curr_particle.curPos = particles[i].curPos + (normal * (particles[i].radius + curr_particle.radius));
             }
