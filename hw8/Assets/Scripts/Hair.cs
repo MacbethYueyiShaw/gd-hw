@@ -46,9 +46,7 @@ public class Hair : MonoBehaviour
     void Start()
     {
         for (int i = 0; i < size; i++) {
-            Vector3 pos = root.transform.position;
-            pos.x = i * spacing;
-            pos.z = i * spacing;
+            Vector3 pos = root.transform.position + root.transform.right* i * spacing;
             HairParticle tmp_particle = new HairParticle();
            
             if (i == 0)
