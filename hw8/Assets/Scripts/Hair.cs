@@ -29,7 +29,7 @@ public class Hair : MonoBehaviour
 {
     [SerializeField] GameObject root;
     [SerializeField] GameObject hairParticle;//hair prefab
-    [SerializeField] int size = 10;//list length
+    [SerializeField] int size;//list length
     [SerializeField] List<HairParticle> particles = new List<HairParticle>();
     [SerializeField] Transform head;
     [SerializeField] float head_radius = 0.5f;
@@ -38,7 +38,6 @@ public class Hair : MonoBehaviour
     [SerializeField] float spacing = 0.5f;//spacing between each two particles
     [SerializeField] [Range(0, 1)] float damping=0.1f;//damping
     [SerializeField] float gravity=9.8f;//gravity
-    [SerializeField] int step = 5;//timestep
     [SerializeField] int counter = 0;//step couter
     [SerializeField] float pr=0.05f;//particle radius
 
@@ -79,19 +78,24 @@ public class Hair : MonoBehaviour
     void Update()
     {
         //Debug.Log(Time.deltaTime);
-        counter++;
-        if (counter <= step)
-        {
-            return;
-        }
-        else
-        {
-            counter = 0;
-        }
-
         for (int i = 0; i < size; i++)
         {
             Verlet(particles[i]);
+        }
+
+        for (int i = 0; i < size; i++)
+        {  
+            Constrain(particles[i]);
+            CheckCollision(particles[i]);
+        }
+
+        //fix the root
+        particles[0].curPos = root.transform.position;
+
+        //rendering
+        for (int i = 0; i < size; i++)
+        {
+            particles[i].Update_rendering();
         }
     }
 
@@ -101,15 +105,22 @@ public class Hair : MonoBehaviour
         //verlet
         Vector3 g = Vector3.down * gravity;
         Vector3 new_pos;
-        float sqrt_t = Time.deltaTime * Time.deltaTime * step * step;
+        float sqrt_t = Time.deltaTime * Time.deltaTime;
         new_pos = curr_particle.curPos + damping * (curr_particle.curPos - curr_particle.prePos) + g * sqrt_t;
         curr_particle.prePos = curr_particle.curPos;
         curr_particle.curPos = new_pos;
 
+        return;
+    }
+    void CheckCollision(HairParticle curr_particle)
+    {
         //collision
         //Head
-        if (Vector3.Distance(curr_particle.curPos,head.position)<=(head_radius+curr_particle.radius))
+        if (Vector3.Distance(curr_particle.curPos, head.position) <= (head_radius + curr_particle.radius))
         {
+            Debug.Log(Vector3.Distance(curr_particle.curPos, head.position));
+            Debug.Log(head_radius + curr_particle.radius);
+            Debug.Log(curr_particle.index.ToString() + " collison with head");
             Vector3 normal = (curr_particle.curPos - head.position).normalized;
             curr_particle.curPos = head.position + (normal * (head_radius + curr_particle.radius));
         }
@@ -119,26 +130,38 @@ public class Hair : MonoBehaviour
             if (i == curr_particle.index) continue;
             if (Vector3.Distance(curr_particle.curPos, particles[i].curPos) <= (particles[i].radius + curr_particle.radius))
             {
+                Debug.Log(Vector3.Distance(curr_particle.curPos, particles[i].curPos));
+                Debug.Log(particles[i].radius + curr_particle.radius);
+                Debug.Log(curr_particle.index.ToString() + " collison with " + i.ToString());
                 Vector3 normal = (curr_particle.curPos - particles[i].curPos).normalized;
                 curr_particle.curPos = particles[i].curPos + (normal * (particles[i].radius + curr_particle.radius));
             }
         }
+    }
 
+    void Constrain(HairParticle curr_particle)
+    {
         //constrain
+        //method1
         Vector3 distance = curr_particle.curPos - curr_particle.parent_transform.position;
         float length = Vector3.Distance(curr_particle.curPos, curr_particle.parent_transform.position);
-        Vector3 delta = distance.normalized * (length-curr_particle.length)/2;
-        curr_particle.curPos = curr_particle.curPos - delta;
+        Vector3 delta = distance.normalized * (length - curr_particle.length) / 2;
+
         if (curr_particle.index > 1)
         {
-            particles[curr_particle.index-1].curPos = particles[curr_particle.index - 1].curPos + delta;
+            curr_particle.curPos -= delta;
+            particles[curr_particle.index - 1].curPos = particles[curr_particle.index - 1].curPos + delta;
         }
-
-
-
-        //rendering
-        curr_particle.Update_rendering();
-
-        return;
+        else if (curr_particle.index == 1)
+        {
+            curr_particle.curPos -= delta;
+        }
+        //method2
+       /* if (curr_particle.index == size-1) return;
+        Vector3 x1 = curr_particle.curPos;
+        Vector3 x2 = particles[curr_particle.index + 1].curPos;
+        Vector3 delta = (x2 - x1).normalized * (Vector3.Distance(x1, x2) - curr_particle.length) / 2;
+        curr_particle.curPos += delta;
+        particles[curr_particle.index + 1].curPos -= delta;*/
     }
 }

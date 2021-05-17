@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 556124507}
   - component: {fileID: 556124512}
   m_Layer: 0
-  m_Name: hair
+  m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,13 +223,13 @@ MonoBehaviour:
   root: {fileID: 629235901}
   hairParticle: {fileID: 5304028115473291988, guid: 18f6226b50a8be445b64ff8463fd47c3,
     type: 3}
-  size: 20
+  size: 9
   head: {fileID: 556124511}
   head_radius: 0.5
   spacing: 0.11
   damping: 0.403
   gravity: 9.8
-  step: 4
+  step: 1
   counter: 0
   pr: 0.05
 --- !u!135 &556124508
@@ -241,7 +241,7 @@ SphereCollider:
   m_GameObject: {fileID: 556124506}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
