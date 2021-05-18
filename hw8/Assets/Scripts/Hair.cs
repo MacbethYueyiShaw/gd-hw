@@ -28,32 +28,40 @@ public class HairParticle
 public class Hair : MonoBehaviour
 {
     [SerializeField] GameObject root;
+    private float pre_angle;
+    private float curr_angle;
+    [SerializeField] float angle_offset;
+    private Vector3 root_normal;
     [SerializeField] GameObject hairParticle;//hair prefab
     [SerializeField] int size;//list length
     [SerializeField] List<HairParticle> particles = new List<HairParticle>();
     [SerializeField] Transform head;
     [SerializeField] float head_radius = 0.5f;
-
-   
+    [SerializeField] int iterations;//iterations
     [SerializeField] float spacing = 0.5f;//spacing between each two particles
     [SerializeField] [Range(0, 1)] float damping=0.1f;//damping
     [SerializeField] float gravity=9.8f;//gravity
-    [SerializeField] int counter = 0;//step couter
     [SerializeField] float pr=0.05f;//particle radius
 
     
     // Start is called before the first frame update
     void Start()
     {
+        root_normal = Vector3.forward;
+        Debug.Log(root_normal.ToString("f3"));
+        Vector3 axis = Vector3.up;
+        root_normal = Quaternion.AngleAxis(root.transform.localEulerAngles.y + angle_offset, axis) * root_normal;
+        Debug.Log(root_normal.ToString("f3"));
         for (int i = 0; i < size; i++) {
-            Vector3 pos = root.transform.position + root.transform.right* i * spacing;
+            Vector3 pos = root.transform.position + root_normal * i * spacing;
+            //Debug.Log(pos.ToString("f3"));
             HairParticle tmp_particle = new HairParticle();
            
             if (i == 0)
             {
                 tmp_particle.parent_transform = root.transform;
                 tmp_particle.localRotation = root.transform.rotation;
-                tmp_particle.length = 0;
+                tmp_particle.length = spacing;
             }
             else
             {
@@ -76,19 +84,25 @@ public class Hair : MonoBehaviour
     void Update()
     {
         //Debug.Log(Time.deltaTime);
+        UpdateRootSpin();
+
         for (int i = 0; i < size; i++)
         {
             Verlet(particles[i]);
         }
 
-        for (int i = 0; i < size; i++)
+        for (int j = 0; j < iterations; j++)
         {
-            CheckCollision(particles[i]);
-            Constrain(particles[i]);
-        }
+            for (int i = 0; i < size; i++)
+            {
+                CheckCollision(particles[i]);
+                Constrain(particles[i]);
 
-        //fix the root
-        particles[0].curPos = root.transform.position;
+                //fix the root
+                particles[0].curPos = root.transform.position;
+            } 
+        }
+        
 
         //rendering
         for (int i = 0; i < size; i++)
@@ -110,8 +124,10 @@ public class Hair : MonoBehaviour
 
         return;
     }
+
     void CheckCollision(HairParticle curr_particle)
     {
+        if (curr_particle.index == 0) return;
         //collision
         //Head
         if (Vector3.Distance(curr_particle.curPos, head.position) <= (head_radius + curr_particle.radius))
@@ -141,7 +157,7 @@ public class Hair : MonoBehaviour
     {
         //constrain
         //method1
-        Vector3 distance = curr_particle.curPos - curr_particle.parent_transform.position;
+        /*Vector3 distance = curr_particle.curPos - curr_particle.parent_transform.position;
         float length = Vector3.Distance(curr_particle.curPos, curr_particle.parent_transform.position);
         Vector3 delta = distance.normalized * (length - curr_particle.length) / 2;
 
@@ -153,13 +169,18 @@ public class Hair : MonoBehaviour
         else if (curr_particle.index == 1)
         {
             curr_particle.curPos -= delta;
-        }
+        }*/
         //method2
-       /* if (curr_particle.index == size-1) return;
+        if (curr_particle.index == size - 1) return;
         Vector3 x1 = curr_particle.curPos;
         Vector3 x2 = particles[curr_particle.index + 1].curPos;
         Vector3 delta = (x2 - x1).normalized * (Vector3.Distance(x1, x2) - curr_particle.length) / 2;
         curr_particle.curPos += delta;
-        particles[curr_particle.index + 1].curPos -= delta;*/
+        particles[curr_particle.index + 1].curPos -= delta;
+    }
+
+    void UpdateRootSpin()
+    {
+
     }
 }
