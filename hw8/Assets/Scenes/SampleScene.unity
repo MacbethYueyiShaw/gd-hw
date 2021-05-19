@@ -549,13 +549,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 1183505486}
   m_HandleRect: {fileID: 446762268}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 100
+  m_MinValue: 0
+  m_MaxValue: 50
   m_WholeNumbers: 1
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2052388466}
+        m_MethodName: editSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &216851425
 GameObject:
   m_ObjectHideFlags: 0
@@ -3515,6 +3526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hair: {fileID: 4890764003927622378, guid: fe251c218d90a1147b625d014fccaec4, type: 3}
+  slider: {fileID: 180046833}
   strand_number: 50
   head: {fileID: 1135664359}
   head_radius: 0.5
