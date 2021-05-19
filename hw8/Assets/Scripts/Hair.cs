@@ -28,15 +28,13 @@ public class HairParticle
 public class Hair : MonoBehaviour
 {
     [SerializeField] GameObject root;
-    private float pre_angle;
-    private float curr_angle;
     [SerializeField] float angle_offset;
     private Vector3 root_normal;
     [SerializeField] GameObject hairParticle;//hair prefab
     [SerializeField] int size;//list length
     [SerializeField] List<HairParticle> particles = new List<HairParticle>();
-    [SerializeField] Transform head;
-    [SerializeField] float head_radius = 0.5f;
+    public Transform head;
+    public float head_radius = 0.5f;
     [SerializeField] int iterations;//iterations
     [SerializeField] float spacing = 0.5f;//spacing between each two particles
     [SerializeField] [Range(0, 1)] float damping=0.1f;//damping
@@ -48,10 +46,10 @@ public class Hair : MonoBehaviour
     void Start()
     {
         root_normal = Vector3.forward;
-        Debug.Log(root_normal.ToString("f3"));
+        //Debug.Log(root_normal.ToString("f3"));
         Vector3 axis = Vector3.up;
         root_normal = Quaternion.AngleAxis(root.transform.localEulerAngles.y + angle_offset, axis) * root_normal;
-        Debug.Log(root_normal.ToString("f3"));
+        //Debug.Log(root_normal.ToString("f3"));
         for (int i = 0; i < size; i++) {
             Vector3 pos = root.transform.position + root_normal * i * spacing;
             //Debug.Log(pos.ToString("f3"));
@@ -84,7 +82,6 @@ public class Hair : MonoBehaviour
     void Update()
     {
         //Debug.Log(Time.deltaTime);
-        UpdateRootSpin();
 
         for (int i = 0; i < size; i++)
         {
