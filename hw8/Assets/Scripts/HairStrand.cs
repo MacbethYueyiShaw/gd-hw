@@ -18,6 +18,7 @@ public class HairStrand : MonoBehaviour
     [SerializeField] float gravity = 9.8f;
      private bool isInit = false;
     [SerializeField] Transform head;
+    [SerializeField] Transform Head;
     [SerializeField] float head_radius = 0.5f;
     [SerializeField] List<GameObject> hairs = new List<GameObject>();
     // Start is called before the first frame update
@@ -33,13 +34,14 @@ public class HairStrand : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+/*    void Update()
     {
       
-    }
+    }*/
 
     void AddHair(int value)
     {
+        Head.localEulerAngles = Vector3.zero;
         float alpha = 90f;
         float beta = 0f;
         float delta = 15f;
