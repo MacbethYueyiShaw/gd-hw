@@ -31,14 +31,14 @@ public class Hair : MonoBehaviour
     [SerializeField] float angle_offset;
     private Vector3 root_normal;
     [SerializeField] GameObject hairParticle;//hair prefab
-    [SerializeField] int size;//list length
+    public int size;//list length
     [SerializeField] List<HairParticle> particles = new List<HairParticle>();
     public Transform head;
     public float head_radius = 0.5f;
-    [SerializeField] int iterations;//iterations
+    public int iterations = 3;//iterations
     [SerializeField] float spacing = 0.5f;//spacing between each two particles
     [SerializeField] [Range(0, 1)] float damping=0.1f;//damping
-    [SerializeField] float gravity=9.8f;//gravity
+    public float gravity=9.8f;//gravity
     [SerializeField] float pr=0.05f;//particle radius
 
     
@@ -176,8 +176,53 @@ public class Hair : MonoBehaviour
         particles[curr_particle.index + 1].curPos -= delta;
     }
 
-    void UpdateRootSpin()
+    public void EditLength(int value)
     {
+        if (value == size) return;
+        else if (value > size)
+        {
+            for (int i = size; i < value; i++)
+            {
+                Vector3 pos = particles[i-1].hair_particle.transform.position + root_normal * (i-1) * spacing;
+                //Debug.Log(pos.ToString("f3"));
+                HairParticle tmp_particle = new HairParticle();
 
+                if (i == 0)
+                {
+                    tmp_particle.parent_transform = root.transform;
+                    tmp_particle.localRotation = root.transform.rotation;
+                    tmp_particle.length = spacing;
+                }
+                else
+                {
+                    tmp_particle.parent_transform = particles[particles.Count - 1].hair_particle.transform;
+                    tmp_particle.localRotation = particles[particles.Count - 1].hair_particle.transform.rotation;
+                    tmp_particle.length = spacing;
+                }
+                tmp_particle.hair_particle = Instantiate(hairParticle, pos, tmp_particle.localRotation);
+                tmp_particle.hair_particle.transform.parent = this.transform;
+
+                tmp_particle.prePos = pos;
+                tmp_particle.curPos = pos;
+                tmp_particle.radius = pr;
+                tmp_particle.index = i;
+                particles.Add(tmp_particle);
+            }
+        }
+        else if (value < size)
+        {
+            for (int i = size; i > value; i--)
+            {
+                if (i == 0) return;
+                Destroy(particles[i - 1].hair_particle);
+                particles.Remove(particles[i - 1]);
+            }
+        }
+        size = value;
+    }
+
+    public void SetDamping(float value)
+    {
+        damping = value;
     }
 }

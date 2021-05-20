@@ -6,8 +6,16 @@ using UnityEngine.UI;
 public class HairStrand : MonoBehaviour
 {
     [SerializeField] GameObject hair;
-    [SerializeField] Slider slider;
+    [SerializeField] Slider sizeSlider;
+    [SerializeField] Slider lengthSlider;
+    [SerializeField] Slider iterationsSlider;
+    [SerializeField] Slider gravitySlider;
+    [SerializeField] Slider dampingSlider;
     [SerializeField] int strand_number = 33;
+    [SerializeField] int length = 10;
+    [SerializeField] [Range(0, 1)] float damping = 0.1f;
+    [SerializeField] int p_iterations = 3;
+    [SerializeField] float gravity = 9.8f;
      private bool isInit = false;
     [SerializeField] Transform head;
     [SerializeField] float head_radius = 0.5f;
@@ -16,6 +24,11 @@ public class HairStrand : MonoBehaviour
     void Start()
     {
         AddHair(strand_number);
+        sizeSlider.value = strand_number;
+        lengthSlider.value = length;
+        iterationsSlider.value = p_iterations;
+        gravitySlider.value = gravity;
+        dampingSlider.value = damping;
         isInit = true;
     }
 
@@ -76,6 +89,10 @@ public class HairStrand : MonoBehaviour
                 Hair tmp_hair = tmp.GetComponent<Hair>();
                 tmp_hair.head = head;
                 tmp_hair.head_radius = head_radius;
+                tmp_hair.size = length;
+                tmp_hair.SetDamping(damping);
+                tmp_hair.iterations = p_iterations;
+                tmp_hair.gravity = gravity;
                 hairs.Add(tmp);
             }
 
@@ -86,9 +103,9 @@ public class HairStrand : MonoBehaviour
         strand_number = value;
     }
 
-    public void editSize()
+    public void EditSize()
     {
-        int value = (int)slider.value;
+        int value = (int)sizeSlider.value;
         if (value == strand_number) return;
         else if (value > strand_number)
         {
@@ -104,5 +121,49 @@ public class HairStrand : MonoBehaviour
             }
             strand_number = value;
         } 
+    }
+
+    public void EditLength()
+    {
+        int value = (int)lengthSlider.value;
+        for (int i = 0; i < strand_number; i++)
+        {
+            Hair tmp_hair = hairs[i].GetComponent<Hair>();
+            tmp_hair.EditLength(value);
+        }
+        length = value;
+    }
+
+    public void EditIterations()
+    {
+        int value = (int)iterationsSlider.value;
+        for (int i = 0; i < strand_number; i++)
+        {
+            Hair tmp_hair = hairs[i].GetComponent<Hair>();
+            tmp_hair.iterations = value;
+        }
+        p_iterations = value;
+    }
+
+    public void EditGravity()
+    {
+        float value = gravitySlider.value;
+        for (int i = 0; i < strand_number; i++)
+        {
+            Hair tmp_hair = hairs[i].GetComponent<Hair>();
+            tmp_hair.gravity = value;
+        }
+        gravity = value;
+    }
+
+    public void EditDamping()
+    {
+        float value = dampingSlider.value;
+        for (int i = 0; i < strand_number; i++)
+        {
+            Hair tmp_hair = hairs[i].GetComponent<Hair>();
+            tmp_hair.SetDamping(value);
+        }
+        damping = value;
     }
 }
