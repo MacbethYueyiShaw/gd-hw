@@ -16,7 +16,12 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButton("NextLevel"))
         {
-            if (SceneManager.GetActiveScene().buildIndex < 2)
+         
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+       
+
+            if (SceneManager.GetActiveScene().buildIndex < 3)
             {
                 //Debug.Log(SceneManager.GetActiveScene().buildIndex);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

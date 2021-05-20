@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/hair.unity
+    guid: f6ee03b143020b8478aa1fad18737875
+  - enabled: 1
     path: Assets/Scenes/hw5part1.unity
     guid: 2fed05768fb13e041acb5e0369bd7916
   - enabled: 1
